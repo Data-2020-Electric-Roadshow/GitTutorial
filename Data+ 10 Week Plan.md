@@ -34,4 +34,5 @@
 ## Task 3 (Weeks 8-10): Extensions
 
 * Are inferences from task 2 applicable to developing electricity markets in the 21st century?
+* Visit the smithsonian!!
 
