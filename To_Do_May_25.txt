@@ -1,0 +1,8 @@
+TO-DO May 26, 2020:
+
+- Learn to use Git from the command line
+- Communicate with the Team via pushes and pulls to a remote branch
+
+- Understand what data are available in the pdf files
+- Understand what questions you want to answer with it
+- Write up your description of the files and questions we will answer in an R markdown file. Pull the latest changes to the repository, stage and commit your file, and push to the remote branch.
