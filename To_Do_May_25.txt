@@ -1,4 +1,4 @@
-TO-DO May 26, 2020:
+to-do May 26, 2020:
 
 - Learn to use Git from the command line
 - Communicate with the Team via pushes and pulls to a remote branch
