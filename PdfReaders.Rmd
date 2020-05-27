@@ -38,8 +38,47 @@ not testes this package.
 
 
 ## ZhiHao
-1.
+1. Python package `tabula_convert_into` (I recommend)
 
-2.
+a. description: 
+tabula-py is a simple Python wrapper of
+tabula-java, which can read table of PDF.
+You can read tables from PDF and convert into pandas’s DataFrame. 
+tabula-py also enables you to convert a PDF file into
+CSV/TSV/JSON file. 
+I think we can focus on its convert function. (If
+familiar with python, the tabula_read_pdf function can be helpful)
+
+b. Try:
+I test this command using the table on page 23 of
+"~/From FPC/1942.FPC.Production of Electric Energy.pdf".
+This works well, and returns a relatively easy-handling
+csv file. 
+
+c. Problems on csv file:
+- Some records (numbers) are splitted into two different
+rows. Some people say adding "lattice=True" can solve
+this problem, but it returns me an empty file. Maybe we
+can fix this later by data transformation?
+- Scanned page is not clear enough to get the correct
+record. For example, "242,940" is parsed as "242, 9 sy".
+- Same format table on different page of original pdf
+file returns different table format in csv file. For
+example, I also tried to convert page 19 of the test
+file. It has the same format, but in csv file, it is
+somewhat diffenet. This can make it difficult for later
+iteration.
 
 
+2. R package `pdftools` + `pdftables`
+
+a. description:
+An unofficial R package to convert PDF tables to format more amenable to analysis (like csv). It's easy to combine these two commands
+
+b. problem:
+It requires API key for automatically scraping pdf
+files. The maximum page we can scrape is 50....If we
+want to scrape more, we have to pay for $40 for 5000
+pages. I think the quality of conversion does not deserve $40 for our scanned pdf.
+
+Note: if interested, you can see the code and generated csv file in directory "test_csv_zhihao". If you want to try the R code, you can use my API key in the script.
