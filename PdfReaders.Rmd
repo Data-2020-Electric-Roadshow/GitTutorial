@@ -17,9 +17,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Tri
-1.
+1. `pdftools` is a great package for pdf scraping. The package contains the 
+`pdf_text` function, which renders all textboxes on a text canvas and returns a 
+character vector of equal length to the number of pages in the PDF file. It also
+has the `pdf_data` function, which is more low level and returns one data frame 
+per page, containing one row for each textbox in the PDF.
+I am currently translating some pdf into csv file using this package. It is not
+very good at detecting small texts or small details, but it translates some of 
+the clearer files into csv files. I think this is useful as the first step 
+because we can see some initial results. 
 
-2.
+2. `tabulizer` is another great package for pdf scraping. This package provides 
+R bindings to the Tabula java library, which can be used to computationally 
+extract tables from PDF documents. The main function extract_tables() mimics the 
+command-line behavior of the Tabula, by extracting all tables from a PDF file 
+and, by default, returns those tables as a list of character matrices in R.
+I am having some troubles setting up the `rJava`, `tabulizer`, and 
+`tabulizerjars` package since I have not implemented Java in my system. I have
+not testes this package. 
 
 
 ## ZhiHao
