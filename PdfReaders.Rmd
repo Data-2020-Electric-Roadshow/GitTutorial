@@ -29,7 +29,7 @@ very good at detecting small texts or small details, but it translates some of
 the clearer files into csv files. I think this is useful as the first step 
 because we can see some initial results. 
 
-2. `tabulizer` is another great package for pdf scraping. This package provides 
+`tabulizer` is another great package for pdf scraping. This package provides 
 R bindings to the Tabula java library, which can be used to computationally 
 extract tables from PDF documents. The main function extract_tables() mimics the 
 command-line behavior of the Tabula, by extracting all tables from a PDF file 
@@ -37,6 +37,16 @@ and, by default, returns those tables as a list of character matrices in R.
 I am having some troubles setting up the `rJava`, `tabulizer`, and 
 `tabulizerjars` package since I have not implemented Java in my system. I have
 not testes this package. 
+
+Update: I was able to translate two pages of 1 report to csv file using 
+`pdftools`. However, I have not found any other way to extract data more 
+efficient. I have updated these changes in the Git Repo. 
+
+2. `tabula-py` is a Python based package to convert pdf file into csv
+file. You can read tables from PDF and convert into pandas's DataFrame. 
+tabula-py also enables you to convert a PDF file into CSV/TSV/JSON file. I have
+some troubles implementing this in VSCode. I have not tried in any other 
+platforms (Anaconda)
 
 
 ## ZhiHao
