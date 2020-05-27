@@ -1,0 +1,30 @@
+---
+title: "PDF Readers"
+author: "David Buch"
+date: "5/27/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Franco
+1.
+
+2.
+
+
+
+## Tri
+1.
+
+2.
+
+
+## ZhiHao
+1.
+
+2.
+
+
