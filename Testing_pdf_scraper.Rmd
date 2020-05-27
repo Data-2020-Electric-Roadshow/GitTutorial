@@ -122,7 +122,7 @@ last_digit_text4
 ```{r}
 table_csv2 <- data.frame(name_text4, state_text4, last_digit_text4)
 table_csv2 <- slice(table_csv2, -c(14, 62))
-write.csv(table_csv, file = "test2.csv")
+write.csv(table_csv2, file = "test2.csv")
 ```
 
 
