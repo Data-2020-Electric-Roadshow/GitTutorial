@@ -1,0 +1,133 @@
+---
+title: "Testing"
+author: "Tri Truong"
+date: "5/27/2020"
+output: 
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, 
+                      message = FALSE, warning = FALSE,
+                      fig.height=6, fig.width = 9, fig.align = "center")
+```
+
+# Ppackages
+
+```{r load-packages, message = FALSE}
+library(stringr)
+library(dplyr)
+library(pdftools)
+library(tidyverse)
+library(pdftables)
+library(qpdf)
+```
+
+# PDF
+
+```{r load_data}
+text <- pdf_text("1941.Directory of electric utilities in the US pdf.pdf") %>%
+  readr::read_lines()
+```
+
+```{r data_cleaning}
+text2 <- strsplit(text, "\n")
+text3 <- text2[157:204]
+text4 <- text2[210:275]
+```
+
+
+
+```{r}
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+substrLeft = function (string,char) {
+    substr(string,1,char)
+}
+```
+
+
+```{r}
+last_digit_text3 <- vector(mode="character", length=48)
+name_text3 <- vector(mode="character", length=48)
+state_text3 <- vector(mode="character", length=48)
+
+for (i in 1:48) {
+  if (i != 29) {
+    last_digit_text3[i] <- substrRight(text3[i],3)
+    state_text3[i] <- substr(text3[i], 51, 72)
+  }
+   name_text3[i] <- substrLeft(text3[i], 50)
+}
+
+last_digit_text3 <- last_digit_text3 %>%
+  str_squish()
+
+name_text3 <- name_text3 %>%
+  str_squish()
+name_text3[30] <- paste(name_text3[29],name_text3[30],sep=" ")
+name_text3[29] <- ""
+
+state_text3 <- state_text3 %>%
+  str_squish() %>%
+  str_replace_all(" —", "")
+
+name_text3
+state_text3
+last_digit_text3
+```
+
+```{r}
+table_csv <- data.frame(name_text3, state_text3, last_digit_text3)
+table_csv <- slice(table_csv, -c(29))
+write.csv(table_csv, file = "test1.csv")
+```
+
+```{r}
+last_digit_text4 <- vector(mode="character", length=66)
+name_text4 <- vector(mode="character", length=66)
+state_text4 <- vector(mode="character", length=66)
+
+for (i in 1:66) {
+  if (i!=62 || i!=14) {
+    last_digit_text4[i] <- substrRight(text4[i],3)
+    state_text4[i] <- substr(text4[i], 48, 70)
+  }
+   name_text4[i] <- substrLeft(text4[i], 47)
+}
+
+last_digit_text4 <- last_digit_text4 %>%
+  str_squish()
+
+name_text4 <- name_text4 %>%
+  str_squish()
+name_text4[15] <- paste(name_text4[14],name_text4[15],sep=" ")
+name_text4[14] <- ""
+name_text4[63] <- paste(name_text4[62],name_text4[63],sep=" ")
+name_text4[62] <- ""
+
+state_text4 <- state_text4 %>%
+  str_squish() %>%
+  str_replace_all(" —", "") %>%
+  str_replace_all("-. ", "") %>%
+  str_replace_all(". ", "")
+
+name_text4
+state_text4
+last_digit_text4
+```
+
+```{r}
+table_csv2 <- data.frame(name_text4, state_text4, last_digit_text4)
+table_csv2 <- slice(table_csv2, -c(14, 62))
+write.csv(table_csv, file = "test2.csv")
+```
+
+
+
+
+
+
+
