@@ -1,0 +1,44 @@
+---
+title: "Data_Summary_Tri"
+author: "Tri Truong"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Tri Truong
+
+# Archival Data Summary  
+In the Archival Data, there are 19 files from the FPC and 17 from the REA. There
+are 2 pdf papers: one is about graphic visualization of the rural 
+electrification project and the other is about the Red Wing Project, which 
+described the utilization of electricity on agriculture
+
+
+## FPC Data
+There are 4 folders in the FPC folder: Directory of Electric and Gas Utilities, 
+Electric Power Statistics, Statistics of Electric Utilities, and Production of 
+Electric Energy. The Directory of Electric and Gas Utilitie Folder contains data 
+of the electric and gas utilities of different communities in different states
+of the US. It also contains electric and gas utilities data of several
+industrial plants and how they affected the communities they served. The 
+Electric Power Statistics data contains data about the production of electricity
+of different states, the capacity of electrical energy that plants can create, 
+and the required consumption of energy. The Statistics of Electric Utilities 
+contains financial report of data that affected different communities. These
+includes revenues, sales, and financial fees for owning electric utilities. The
+Production of Electric Energy contains data about the production of electricity 
+and electric capacity genertion of different states and communities in the US.
+
+
+## REA Data  
+There are 2 folders (Annual Statistical Report and Energy purchased by REA 
+borrowers) and 1 report in the REA Folder. The report is a summary of the 
+administration about the result of rural electrification. Overall, it presents 
+tremendous increase in electric usage in rural areas and explains potential 
+benefits. The Annual Statistical Report contains financial data for the REA 
+administration. These datas came either from the administration itself or 
+borrowers. The Energy purchased by REA borrowers contains data about energy 
+reported from borrowers of different communities and different states. 
