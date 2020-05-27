@@ -1,0 +1,22 @@
+---
+title: "DataSummaryFranco"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Franco Picone
+
+# Data+ Data Summary  
+
+There are 38 files in the data+ data folder. 36 of these files are grouped based on their source, with 19 coming from the FPC and 17 coming from the REA. There is also a paper examining visualization in rural electirfication posters and another paper that specifically looks at the implementation of the Red Wing Project.  
+
+## FPC Data
+In the folder for FPC files are four smaller folders. The first of these contains data files from a few different years detailing the executives at every energy utility throughout the country, organized by state. These files also describe electricity/gas sales, customers, revenues and market segments. The next folder contains data files summarizing the total electrical generating capacity of power plants in the country. These files also break down the generating capacity by geographic region and provide separate values based on what method/source was used to generate the electricity. The third folder has data files that look more closely tat electrical utilities throughout the country and describes their revenues, sales and expenses through a number of different tables and financial statements. The last folder cotains files that describe the production of electricity and capacity of electricity genertion in the united states and subdivide this information based on state/geoegraphic region. The data is also grouped by energy source of as it is called in the documents "type of prime mover". The documents also describe the production plants' operations and compare the current generation capacity to the past. This information is also organized temporally, by month.  
+
+## REA Data  
+In the REA file folder there are 2 smaller folders and a report from REA Administrator. The report explains the applications and potential benefits of electricity use in rural areas. It also explains in simple terms the way electricity works and how the grid has been formed. In the first folder, there are several data files describing "allotment, construction, operating and financial statistics" for REA financed electricity systems throughout the country. The data files in the last folder contain graphics, charts and tables summarizing the amount of electricity purchased in a given year in a given state, and the cost of that energy. These quantities are broken down further depending on whether the electricity was bought from publicly or privately owned suppliers.
+
+
