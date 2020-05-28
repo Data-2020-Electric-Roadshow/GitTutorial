@@ -47,86 +47,6 @@ substrLeft = function (string,char) {
 ```
 
 ```{r}
-last_digit_text3 <- vector(mode="character", length=48)
-name_text3 <- vector(mode="character", length=48)
-state_text3 <- vector(mode="character", length=48)
-
-for (i in 1:48) {
-  if (i != 29) {
-    last_digit_text3[i] <- substrRight(text3[i],3)
-    state_text3[i] <- substr(text3[i], 51, 72)
-  }
-   name_text3[i] <- substrLeft(text3[i], 50)
-}
-
-last_digit_text3 <- last_digit_text3 %>%
-  str_squish()
-
-name_text3 <- name_text3 %>%
-  str_squish()
-name_text3[30] <- paste(name_text3[29],name_text3[30],sep=" ")
-name_text3[29] <- ""
-
-state_text3 <- state_text3 %>%
-  str_squish() %>%
-  str_replace_all(" —", "")
-
-name_text3
-state_text3
-last_digit_text3
-```
-
-```{r}
-table_csv <- data.frame(name_text3, state_text3, last_digit_text3)
-table_csv <- slice(table_csv, -c(29))
-write.csv(table_csv, file = "test1.csv")
-```
-
-```{r}
-last_digit_text4 <- vector(mode="character", length=66)
-name_text4 <- vector(mode="character", length=66)
-state_text4 <- vector(mode="character", length=66)
-
-for (i in 1:66) {
-  if (i!=62 || i!=14) {
-    last_digit_text4[i] <- substrRight(text4[i],3)
-    state_text4[i] <- substr(text4[i], 48, 70)
-  }
-   name_text4[i] <- substrLeft(text4[i], 47)
-}
-
-last_digit_text4 <- last_digit_text4 %>%
-  str_squish()
-
-name_text4 <- name_text4 %>%
-  str_squish()
-name_text4[15] <- paste(name_text4[14],name_text4[15],sep=" ")
-name_text4[14] <- ""
-name_text4[63] <- paste(name_text4[62],name_text4[63],sep=" ")
-name_text4[62] <- ""
-
-state_text4 <- state_text4 %>%
-  str_squish() %>%
-  str_replace_all(" —", "") %>%
-  str_replace_all("-. ", "") %>%
-  str_replace_all(". ", "")
-
-name_text4
-state_text4
-last_digit_text4
-```
-
-```{r}
-table_csv2 <- data.frame(name_text4, state_text4, last_digit_text4)
-table_csv2 <- slice(table_csv2, -c(14, 62))
-write.csv(table_csv2, file = "test2.csv")
-```
-
-```{r}
-text5 <- text[279:344]
-```
-
-```{r}
 pdf_subset("1941.Directory of electric utilities in the US pdf.pdf", page= 10:85, output= "subset.pdf")
 ```
 
@@ -159,10 +79,173 @@ name_text6 <- name_text6 %>%
 state_text6 <- state_text6 %>%
   str_squish() %>%
   str_replace_all("[:digit:]", "") %>%
-  str_replace_all("- ", "")
-  
+  str_replace_all(" -", "") %>%
+  str_squish()
+
+for (i in 1:5196) {
+  if (str_detect(state_text6[i], "Alabama")) {
+    state_text6[i] <- "Alabama"
+  }
+  if (str_detect(state_text6[i], "Alaska")) {
+    state_text6[i] <- "Alaska"
+  }
+  if (str_detect(state_text6[i], "Arizona")) {
+    state_text6[i] <- "Arizona"
+  }
+  if (str_detect(state_text6[i], "Arkansas")) {
+    state_text6[i] <- "Arkansas"
+  }
+  if (str_detect(state_text6[i], "California")) {
+    state_text6[i] <- "California"
+  }
+  if (str_detect(state_text6[i], "Colorado")) {
+    state_text6[i] <- "Colorado"
+  }
+  if (str_detect(state_text6[i], "Connecticut")) {
+    state_text6[i] <- "Connecticut"
+  }
+  if (str_detect(state_text6[i], "Delaware")) {
+    state_text6[i] <- "Delaware"
+  }
+  if (str_detect(state_text6[i], "Florida")) {
+    state_text6[i] <- "Florida"
+  }
+  if (str_detect(state_text6[i], "Georgia")) {
+    state_text6[i] <- "Georgia"
+  }
+  if (str_detect(state_text6[i], "Hawaii")) {
+    state_text6[i] <- "Hawaii"
+  }
+  if (str_detect(state_text6[i], "Idaho")) {
+    state_text6[i] <- "Idaho"
+  }
+  if (str_detect(state_text6[i], "Illinois")) {
+    state_text6[i] <- "Illinois"
+  }
+  if (str_detect(state_text6[i], "Indiana")) {
+    state_text6[i] <- "Indiana"
+  }
+  if (str_detect(state_text6[i], "Iowa")) {
+    state_text6[i] <- "Iowa"
+  }
+  if (str_detect(state_text6[i], "Kansas")) {
+    state_text6[i] <- "Kansas"
+  }
+  if (str_detect(state_text6[i], "Kentucky")) {
+    state_text6[i] <- "Kentucky"
+  }
+  if (str_detect(state_text6[i], "Louisiana")) {
+    state_text6[i] <- "Louisiana"
+  }
+  if (str_detect(state_text6[i], "Maine")) {
+    state_text6[i] <- "Maine"
+  }
+  if (str_detect(state_text6[i], "Maryland")) {
+    state_text6[i] <- "Maryland"
+  }
+  if (str_detect(state_text6[i], "Massachusetts")) {
+    state_text6[i] <- "Massachusetts"
+  }
+  if (str_detect(state_text6[i], "Michigan")) {
+    state_text6[i] <- "Michigan"
+  }
+  if (str_detect(state_text6[i], "Minnesota")) {
+    state_text6[i] <- "Minnesota"
+  }
+  if (str_detect(state_text6[i], "Mississippi")) {
+    state_text6[i] <- "Mississippi"
+  }
+  if (str_detect(state_text6[i], "Missouri")) {
+    state_text6[i] <- "Missouri"
+  }
+  if (str_detect(state_text6[i], "Montana")) {
+    state_text6[i] <- "Montana"
+  }
+  if (str_detect(state_text6[i], "Nebraska")) {
+    state_text6[i] <- "Nebraska"
+  }
+  if (str_detect(state_text6[i], "Nevada")) {
+    state_text6[i] <- "Nevada"
+  }
+  if (str_detect(state_text6[i], "New Hampshire")) {
+    state_text6[i] <- "New Hampshire"
+  }
+  if (str_detect(state_text6[i], "New Jersey")) {
+    state_text6[i] <- "New Jersey"
+  }
+  if (str_detect(state_text6[i], "New Mexico")) {
+    state_text6[i] <- "New Mexico"
+  }
+  if (str_detect(state_text6[i], "New York")) {
+    state_text6[i] <- "New York"
+  }
+  if (str_detect(state_text6[i], "North Carolina")) {
+    state_text6[i] <- "North Carolina"
+  }
+  if (str_detect(state_text6[i], "North Dakota")) {
+    state_text6[i] <- "North Dakota"
+  }
+  if (str_detect(state_text6[i], "Ohio")) {
+    state_text6[i] <- "Ohio"
+  }
+  if (str_detect(state_text6[i], "Oklahoma")) {
+    state_text6[i] <- "Oklahoma"
+  }
+  if (str_detect(state_text6[i], "Oregon")) {
+    state_text6[i] <- "Oregon"
+  }
+  if (str_detect(state_text6[i], "Pennsylvania")) {
+    state_text6[i] <- "Pennsylvania"
+  }
+  if (str_detect(state_text6[i], "Rhode Island")) {
+    state_text6[i] <- "Rhode Island"
+  }
+  if (str_detect(state_text6[i], "South Carolina")) {
+    state_text6[i] <- "South Carolina"
+  }
+  if (str_detect(state_text6[i], "South Dakota")) {
+    state_text6[i] <- "South Dakota"
+  }
+  if (str_detect(state_text6[i], "Tennessee")) {
+    state_text6[i] <- "Tennessee"
+  }
+  if (str_detect(state_text6[i], "Texas")) {
+    state_text6[i] <- "Texas"
+  }
+  if (str_detect(state_text6[i], "Utah")) {
+    state_text6[i] <- "Utah"
+  }
+  if (str_detect(state_text6[i], "Vermont")) {
+    state_text6[i] <- "Vermont"
+  }
+  if (str_detect(state_text6[i], "Virginia")) {
+    state_text6[i] <- "Virginia"
+  }
+  if (str_detect(state_text6[i], "Washington")) {
+    state_text6[i] <- "Washington"
+  }
+  if (str_detect(state_text6[i], "West Virginia")) {
+    state_text6[i] <- "West Virginia"
+  }
+  if (str_detect(state_text6[i], "Wisconsin")) {
+    state_text6[i] <- "Wisconsin"
+  }
+  if (str_detect(state_text6[i], "Wyoming")) {
+    state_text6[i] <- "Wyoming"
+  }
+}
+```
+
+```{r}
 table_csv6 <- data.frame(name_text6, state_text6, last_digit_text6)
 table_csv6 <- table_csv6[grep('^\\d+$', table_csv6$last_digit_text6),]
+
+table_csv6 <- table_csv6 %>%
+  # recode empty strings "" by NAs
+  na_if("") %>%
+  # remove NAs
+  na.omit
+
 write.csv(table_csv6, file = "directory.csv")
 ```
 
