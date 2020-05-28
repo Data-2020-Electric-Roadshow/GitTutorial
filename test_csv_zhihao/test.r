@@ -4,9 +4,16 @@
 library(pdftools)
 library(qpdf)
 library(pdftables)
+convert_pdf('page_new.pdf', output_file = "test.csv", format = "csv", message = TRUE, api_key = "i2d9cxyrhsp5")
 
-files <- pdf_subset("1942.FPC.Production of Electric Energy.pdf", page= 23, output= "z4.pdf")
 
-tar_files <- pdf_text("z.pdf")
+Sys.setenv(JAVA_HOME='C:/Program Files (x86)/Java/jre1.8.0_251/')
+# install.packages("rJava")
+# install.packages("tabulizer")
+library(rJava)
+library(tabulizer)
 
-convert_pdf('z.pdf', output_file = "test", format = "csv", message = TRUE, api_key = "i2d9cxyrhsp5")
+file <- "z.pdf"
+et<- extract_tables(file, pages = 1, stream=TRUE)
+
+?tabulizer
