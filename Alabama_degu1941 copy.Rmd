@@ -95,7 +95,17 @@ table_alabama_index <- table_alabama_index[grep('01', table_alabama_index$last_d
 write.csv(table_alabama_index, file = "alabama_index.csv")
 ```
 
+```{r}
+alabama_data <- alabama[47:length(alabama)]
+alabama_file <- tabulizer::extract_text("Alabama_subset.pdf")
+alabama_file2 <- str_split(alabama_file, "\n")
+alabama_file3 <- alabama_file2[[1]]
+final_alabama_file <- alabama_file3[88:length(alabama_file3)]
+```
 
+```{r}
+final_alabama_file
+```
 
 
 
