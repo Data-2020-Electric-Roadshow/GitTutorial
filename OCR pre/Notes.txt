@@ -1,0 +1,23 @@
+This script tries to improve the quality of image to maximize the accuracy of scrapped information.
+
+The critical part is OCR algorithm, which can efficiently process image and undertake text recognization.  
+
+I choose R package magick and tesseract to do this job. 
+(Note: Python also has similar modules named OpenCSV. I'm not familiar with Python, thus using these two packages）
+
+Step like below:
+-- Iterate to extract each useful page of target pdf file
+-- Convert extracted pdf file to png for processing
+-- Use magick package to:
+    --  binarization: change the picture to "black-and-white" format
+    --  correct skewed images
+    --  rotate tables vertically if needed
+    --  minimize the background noise
+    --  enhances intensity differences (contrast) in image (this can somewhat make some unclear records more visible)
+-- Use tesseract package to:
+    --  undertake text recognization 
+-- Finally, export the results to csv file
+
+(Note: This code can actually finish our target, i.e. convert original pdf to csv. I think it finish job similar as tabulizer or tabula-py. 
+And this process gives us a bonus, image processing!)
+
