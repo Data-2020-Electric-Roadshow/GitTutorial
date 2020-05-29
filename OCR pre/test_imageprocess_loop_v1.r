@@ -4,7 +4,7 @@
 # install.packages("pdftools")
 # install.packages("pdftables")
 # install.packages("magick")
-# install.packages
+# install.packages("tesseract")
 
 library(pdftools)
 library(qpdf)
