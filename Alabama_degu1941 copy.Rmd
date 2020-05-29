@@ -1,0 +1,104 @@
+---
+title: "Testing"
+author: "Tri Truong"
+date: "5/27/2020"
+output: 
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, 
+                      message = FALSE, warning = FALSE,
+                      fig.height=6, fig.width = 9, fig.align = "center")
+```
+
+# Packages
+
+```{r load-packages, message = FALSE}
+library(stringr)
+library(dplyr)
+library(pdftools)
+library(tidyverse)
+library(pdftables)
+library(qpdf)
+library(rJava)
+library(tabulizer)
+library(tabulizerjars)
+```
+
+# PDF
+
+```{r load_data}
+text <- pdf_text("1941.Directory of electric utilities in the US pdf.pdf") %>%
+  readr::read_lines()
+```
+
+```{r load_pdf_Alabama}
+pdf_subset("1941.Directory of electric utilities in the US pdf.pdf", page= 86:99, output= "Alabama_subset.pdf")
+```
+
+```{r Alabama_table}
+alabama <- pdf_text("Alabama_subset.pdf") %>%
+  readr::read_lines()
+```
+
+```{r view_data}
+alabama 
+```
+
+```{r}
+alabama_index <- alabama[5:46]
+
+alabama_index
+```
+
+```{r}
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+substrLeft = function (string,char) {
+    substr(string,1,char)
+}
+```
+
+```{r}
+last_digit_alabama_index <- vector(mode="character", length=84)
+name_alabama_index <- vector(mode="character", length=84)
+for (i in 1:42) {
+  last_digit_alabama_index[i] <- substr(alabama_index[i],49,55)
+  name_alabama_index[i] <- substrLeft(alabama_index[i],48)
+}
+for (i in 1:42) {
+  last_digit_alabama_index[i+42] <- substrRight(alabama_index[i],6)
+  name_alabama_index[i+42] <- substr(alabama_index[i],57,102)
+}
+
+name_alabama_index <- name_alabama_index %>%
+  str_squish()
+last_digit_alabama_index <- last_digit_alabama_index %>%
+  str_squish()
+
+name_alabama_index
+last_digit_alabama_index
+```
+
+```{r}
+table_alabama_index <- data.frame(name_alabama_index, last_digit_alabama_index)
+table_alabama_index <- table_alabama_index %>%
+  # recode empty strings "" by NAs
+  na_if("") %>%
+  # remove NAs
+  na.omit
+
+table_alabama_index <- table_alabama_index[grep('01', table_alabama_index$last_digit_alabama_index),]
+write.csv(table_alabama_index, file = "alabama_index.csv")
+```
+
+
+
+
+
+
+
+
