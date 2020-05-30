@@ -1,0 +1,160 @@
+---
+title: "North_Carolina_degu1940"
+author: "Tri Truong"
+date: "5/29/2020"
+output: 
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, 
+                      message = FALSE, warning = FALSE,
+                      fig.height=6, fig.width = 9, fig.align = "center")
+```
+
+# Packages
+
+```{r load-packages, message = FALSE}
+library(stringr)
+library(dplyr)
+library(pdftools)
+library(tidyverse)
+library(pdftables)
+library(qpdf)
+library(rJava)
+library(tabulizer)
+library(tabulizerjars)
+```
+
+# PDF
+
+```{r load_data}
+north_carolina <- pdf_text("1940.Directory of electric utilities.pdf") %>%
+  readr::read_lines()
+north_carolina_file <- tabulizer::extract_text("1940.Directory of electric utilities.pdf")
+north_carolina_file2 <- str_split(north_carolina_file, "\n")
+north_carolina_file3 <- north_carolina_file2[[1]]
+```
+
+```{r}
+north_carolina
+```
+
+```{r}
+north_carolina_index <- north_carolina[4:70]
+
+north_carolina_index
+```
+
+```{r}
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+substrLeft = function (string,char) {
+    substr(string,1,char)
+}
+```
+
+```{r}
+last_digit_north_carolina_index <- vector(mode="character", length=140)
+name_north_carolina_index <- vector(mode="character", length=140)
+for (i in 1:42) {
+  last_digit_north_carolina_index[i] <- substr(north_carolina_index[i],49,55)
+  name_north_carolina_index[i] <- substrLeft(north_carolina_index[i],44)
+}
+for (i in 1:42) {
+  last_digit_north_carolina_index[i+42] <- substrRight(north_carolina_index[i],6)
+  name_north_carolina_index[i+42] <- substr(north_carolina_index[i],57,102)
+}
+
+name_north_carolina_index <- name_north_carolina_index %>%
+  str_squish()
+last_digit_north_carolina_index <- last_digit_north_carolina_index %>%
+  str_squish()
+
+name_north_carolina_index
+last_digit_north_carolina_index
+```
+
+```{r}
+table_north_carolina_index <- data.frame(name_north_carolina_index, last_digit_north_carolina_index)
+table_north_carolina_index <- table_north_carolina_index %>%
+  # recode empty strings "" by NAs
+  na_if("") %>%
+  # remove NAs
+  na.omit
+
+table_north_carolina_index <- table_north_carolina_index[grep('32', table_north_carolina_index$last_digit_north_carolina_index),]
+write.csv(table_north_carolina_index, file = "north_carolina_index.csv")
+```
+
+```{r}
+final_north_carolina_file <- north_carolina_file3[166:length(north_carolina_file3)]
+```
+
+```{r}
+final_north_carolina_file
+```
+
+```{r}
+count_company <- 0
+for (i in 1:length(final_north_carolina_file)) {
+  if (str_detect(final_north_carolina_file[i], "32 ")) {
+    count_company <- count_company + 1
+  }
+}
+
+vector_company <- vector(mode="character", length=5)
+company_position <- 1
+last_position <- 1
+track_vector <- 1
+for (i in 3:length(final_north_carolina_file)) {
+  if (str_detect(final_north_carolina_file[i], "32 ")) {
+    north_carolina_companies <- final_north_carolina_file[last_position:i-1]
+    
+    for (k in 1:length(north_carolina_companies)) {
+      if (str_detect(north_carolina_companies[k], "32 ")) {
+        vector_company[track_vector] <- north_carolina_companies[k]
+        vector_company[track_vector+1] <- north_carolina_companies[k+1]
+        track_vector <- track_vector + 2
+      }
+      if (str_detect(north_carolina_companies[k], "Electric Utility Plant")) {
+        vector_company[track_vector] <- north_carolina_companies[k]
+        track_vector <- track_vector + 1
+      }
+      if (str_detect(north_carolina_companies[k], "Electric Operating Revenues")) {
+        vector_company[track_vector] <- north_carolina_companies[k]
+        track_vector <- track_vector + 1
+      }
+      if (str_detect(north_carolina_companies[k], "Number of Electric Customers")) {
+        vector_company[track_vector] <- north_carolina_companies[k]
+        track_vector <- track_vector + 1
+      }
+    }
+    
+    table_north_carolina_company <- data.frame(vector_company)
+    
+    company_position <- company_position + 1
+    last_position <- i+1
+  }
+}
+
+write.csv (table_north_carolina_company, file = paste0('table_north_carolina_company', '.csv'))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

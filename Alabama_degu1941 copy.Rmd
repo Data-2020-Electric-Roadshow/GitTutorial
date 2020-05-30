@@ -1,5 +1,5 @@
 ---
-title: "Testing"
+title: "Alabama_degu1941"
 author: "Tri Truong"
 date: "5/27/2020"
 output: 
@@ -105,10 +105,55 @@ final_alabama_file <- alabama_file3[88:length(alabama_file3)]
 
 ```{r}
 final_alabama_file
+company_name <- final_alabama_file[1:443]
 ```
 
+```{r}
+company_name
+```
 
+```{r}
+count_company <- 0
+for (i in 1:length(final_alabama_file)) {
+  if (str_detect(final_alabama_file[i], "01-")) {
+    count_company <- count_company + 1
+  }
+}
 
+vector_company <- vector(mode="character", length=5)
+company_position <- 1
+last_position <- 1
+track_vector <- 1
+for (i in 3:length(final_alabama_file)) {
+  if (str_detect(final_alabama_file[i], "01-")) {
+    alabama_companies <- final_alabama_file[last_position:i-1]
+    
+    for (k in 1:length(alabama_companies)) {
+      if (str_detect(alabama_companies[k], "01-")) {
+        vector_company[track_vector] <- alabama_companies[k]
+        vector_company[track_vector+1] <- alabama_companies[k+1]
+        track_vector <- track_vector + 2
+      }
+      if (str_detect(alabama_companies[k], "Electric Utility Plant")) {
+        vector_company[track_vector] <- alabama_companies[k]
+        track_vector <- track_vector + 1
+      }
+      if (str_detect(alabama_companies[k], "Electric Operating Revenues")) {
+        vector_company[track_vector] <- alabama_companies[k]
+        track_vector <- track_vector + 1
+      }
+      if (str_detect(alabama_companies[k], "Number of Electric Customers")) {
+        vector_company[track_vector] <- alabama_companies[k]
+        track_vector <- track_vector + 1
+      }
+    }
+    
+    table_alabama_company <- data.frame(vector_company)
+    
+    company_position <- company_position + 1
+    last_position <- i+1
+  }
+}
 
-
-
+write.csv (table_alabama_company, file = paste0('table_alabama_company', '.csv'))
+```
