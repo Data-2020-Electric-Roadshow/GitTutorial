@@ -1,0 +1,16 @@
+The purpose of this code is to convert png to searchable pdf based on the website OCR space. 
+Link: https://ocr.space/OCRAPI
+
+The free api can only convert png file less than 1MB. This may not meet our demand to convert high-quality image. 
+You can use an image less than 1MB to test this code.
+
+I test the quality of conversion, this website do well executing the conversion. And, it can:
+1) Automatically detect the orientation of pdf page and it can judge if rotating the pdf page is needed. 
+2) Automatically judge if the input file should be read as a table.
+3) Automatically rescale the pdf page. This will be especially useful for text recognization of low-resolution file.
+4) Output is a totally searchable pdf file, and command like "pdftools" and "tabulizer" can be applied.
+
+So I think it will be efficient if we can get the Pro API.
+
+Note: to run the code smoothly, you need to install Python 'Opencsv' package on your computer. This is a large package,
+and may take lots of time to set up the environment.
