@@ -19,7 +19,7 @@ for (i in tar) {
   ## select the page of pdf files we want to convert (7-103)
   files <- pdf_subset("1941.REA annual statistical report.pdf", page= i, output= paste0('output_',i, '.pdf'))
   ## convert pdf to png
-  bitmap <- pdf_render_page(files, dpi = 150)
+  bitmap <- pdf_render_page(files, dpi = 300)
   png::writePNG(bitmap, paste0('page_',i, '.png'))
   ## Read the picture
   input <- image_read(paste0('page_',i, '.png'))
