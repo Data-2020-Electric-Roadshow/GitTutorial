@@ -2,12 +2,12 @@ library(tidyverse)
 
 library(ggplot2)
 library(ggmap)
-register_google(key = "AIzaSyAt3EKW6-yQy3ldijCeqnOIosDH3knJBUw")
+register_google(key = "Your API Key") # Get From Google Cloud Console, you can find details in the "Google API.txt"
 
 # set up a null map and get the US border
 mp<-NULL
 mapus<-borders("state",colour = "gray50",fill="white") 
-mp<-ggplot() + mapus + xlim(-125,-60)
+mp<-ggplot() + mapus + xlim(-125,-65)
 
 # import data and extract the latlong information
 setwd("C:/Users/Lenovo/Desktop")
@@ -20,7 +20,6 @@ lon <- latlon$longitude
 
 mp2<- mp + 
       geom_point(aes(x=lon,y=lat),size=3, alpha=0.6, color="darkorange")+
-      scale_size(range=c(1,1))+
       labs(x = "",
        y = "",
        title = "Location of REA Borrowers 1941")+
