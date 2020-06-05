@@ -1,0 +1,7 @@
+1. Annual Stats 1941:
+This data is from REA 1941 Annual Statistical Report, and has not merged with information like borrower's geographical information or their name.
+
+2. 1941 map data:
+Based on "Annual Stats 1941", but add borrower's information including their zipcode, latitude, longitude, name, city, and served county. This information
+is extracted from "REA Borrower List.pdf". However, please be aware that, during merging process, only about 85.6% (747/872) of borrowers of 
+"Annual Stats 1941" are successfully matched. 
