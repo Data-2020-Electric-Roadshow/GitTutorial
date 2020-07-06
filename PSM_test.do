@@ -190,7 +190,7 @@ g caliper2=0.001
 psmatch2 START, kernel caliper(`caliper') pscore(phat_exact) com outcome(kwh_per_cc1)
 drop if _support==0
 g esample=e(sample) /* e(sample) equals to 1 if the observation is in the estimation sample and 0 otherwise, thus we can know whether observation is in the matching sample */
-pstest $syvar $svar $cvar $cyvar $pvar 
+pstest $syvar $svar $cvar $cyvar $pvar , both graph 
        
 drop if _w==. /* drop unmatched sample */
 
@@ -206,7 +206,7 @@ tabstat treated N caliper2, s(N mean) c(s) save
 tabstatmat all
 matrix Stats=all'
 
-xml_tab Stats , save("E:\Data Plus\data\PSM\PSM_Pstest_Table_0607.xml") append sheet(Stats_t0) 
+xml_tab Stats , save("E:\Data Plus\data\PSM\PSM_Pstest_Table_0607.xml") replace sheet(Stats_t0) 
 
 * store mean of treated and control group
 svyset _n [pw=_w]
